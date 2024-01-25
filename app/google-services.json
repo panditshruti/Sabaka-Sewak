@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "668569331558",
+    "firebase_url": "https://sabaka-sewak-default-rtdb.firebaseio.com",
+    "project_id": "sabaka-sewak",
+    "storage_bucket": "sabaka-sewak.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668569331558:android:e86d09190f613392dbcaa7",
+        "android_client_info": {
+          "package_name": "com.example.backendsabkasewak"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJsbRt1zpcnniTdZLKOoVYV0Vti-4C0D0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
