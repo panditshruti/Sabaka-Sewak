@@ -23,15 +23,7 @@
         android:id="@+id/link"
         android:layout_margin="10dp"
         />
-<Button
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Ok"
-    android:textStyle="bold"
-    android:id="@+id/okbtn"
-    android:layout_margin="10dp"
-    android:layout_gravity="center"
-    />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -81,6 +73,17 @@
         />
 
 
+
 </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="submit"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:id="@+id/submit"
+        />
 
 </LinearLayout>

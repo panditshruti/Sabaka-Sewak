@@ -5,14 +5,38 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_gravity="center"
+    android:layout_margin="10dp"
     android:layout_height="match_parent"
     tools:context=".Notice">
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Tittle"
+        android:id="@+id/tittle"
+        android:layout_margin="10dp"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Link"
+        android:id="@+id/link"
+        android:layout_margin="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Image"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        />
 
     <ImageView
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:id="@+id/imgview"
         />
@@ -49,6 +73,17 @@
             />
 
 
+
     </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="submit"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:id="@+id/submit"
+        />
 
 </LinearLayout>
