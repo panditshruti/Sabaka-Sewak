@@ -13,7 +13,6 @@ import com.example.backendsabkasewak.db.NoticeItem
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
-
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -32,19 +31,17 @@ class Notice : AppCompatActivity() {
 
         binding.imgchoose.setOnClickListener {
             openGalleryForImage()
-
         }
         binding.pdfchoose.setOnClickListener {
             openPdfFile()
         }
 
         binding.submit.setOnClickListener {
-
             submitData()
         }
     }
 
-  fun openGalleryForImage() {
+    fun openGalleryForImage() {
         val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
@@ -58,80 +55,67 @@ class Notice : AppCompatActivity() {
         binding.imgview.setImageURI(imageuri)
     }
 
-   fun openPdfFile() {
+    fun openPdfFile() {
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.addCategory(Intent.CATEGORY_OPENABLE)
         intent.type = "application/pdf"
         startActivityForResult(intent, 200)
     }
 
-  fun submitData() {
+    fun submitData() {
         val title = binding.tittle.text.toString()
         val link = binding.link.text.toString()
-        val imageUri = binding.imgview.tag?.toString() ?: ""
         val pdfUri = binding.pdfchoose.tag?.toString() ?: ""
-      saveFileToDatabase()
-        val currentDate = SimpleDateFormat("yyyy_MM_dd", Locale.getDefault()).format(Date())
-        val entryKey = database.child(currentDate).push().key
 
-        entryKey?.let {
-            val noticeItem = NoticeItem(title, link, imageUri, pdfUri)
-            database.child(currentDate).child(entryKey).setValue(noticeItem).addOnSuccessListener {
-                Toast.makeText(this, "Data Uploaded", Toast.LENGTH_SHORT).show()
-                binding.tittle.text.clear()
-                binding.link.text.clear()
-                binding.imgview.setImageDrawable(null)
-            }.addOnFailureListener {
-                Toast.makeText(this, "Data Upload Failed", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
+        if (imageuri != null) {
+            val progressDialog = ProgressDialog(this)
+            progressDialog.setMessage("Uploading file...")
+            progressDialog.setCancelable(false)
+            progressDialog.show()
 
-    fun saveFileToDatabase() {
-        val progressDialog = ProgressDialog(this)
-        progressDialog.setMessage("Uploading file...")
-        progressDialog.setCancelable(false)
-        progressDialog.show()
+            val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+            val storageReference = FirebaseStorage.getInstance().reference.child("images/$timestamp.jpg")
 
-        val formatter = SimpleDateFormat("yyyy_MM_dd_HHmmss", Locale.getDefault()).format(Date())
-        val now = Date()
-        val filename = formatter.format(now)
+            storageReference.putFile(imageuri)
+                .addOnSuccessListener { taskSnapshot ->
+                    // Image uploaded successfully, get the download URL
+                    storageReference.downloadUrl.addOnSuccessListener { downloadUri ->
+                        // Save image URL to Realtime Database
+                        val currentDate = SimpleDateFormat("yyyy_MM_dd", Locale.getDefault()).format(Date())
+                        val entryKey = database.child(currentDate).push().key
 
-        val storageReference = FirebaseStorage.getInstance().reference.child("images/$filename.jpg")
-        storageReference.putFile(imageuri)
-            .addOnSuccessListener { taskSnapshot ->
-                // Image uploaded successfully, get the download URL
-                storageReference.downloadUrl.addOnSuccessListener { downloadUri ->
-                    // Save image URL to Realtime Database
-                    val currentDate = SimpleDateFormat("yyyy_MM_dd", Locale.getDefault()).format(Date())
-                    val entryKey = database.child(currentDate).push().key
-
-                    entryKey?.let {
-                        val noticeItem = NoticeItem("", "", downloadUri.toString(), "")
-                        database.child(currentDate).child(entryKey).setValue(noticeItem)
-                            .addOnSuccessListener {
-                                Toast.makeText(
-                                    this@Notice,
-                                    "Image Uploaded Successfully",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                progressDialog.dismiss()
-                            }
-                            .addOnFailureListener {
-                                Toast.makeText(
-                                    this@Notice,
-                                    "Image Upload Failed",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                progressDialog.dismiss()
-                            }
+                        entryKey?.let {
+                            val noticeItem = NoticeItem(title, link, downloadUri.toString(), pdfUri)
+                            database.child(currentDate).child(entryKey).setValue(noticeItem)
+                                .addOnSuccessListener {
+                                    Toast.makeText(
+                                        this@Notice,
+                                        "Data Uploaded Successfully",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    binding.tittle.text.clear()
+                                    binding.link.text.clear()
+                                    binding.imgview.setImageDrawable(null)
+                                    progressDialog.dismiss()
+                                }
+                                .addOnFailureListener {
+                                    Toast.makeText(
+                                        this@Notice,
+                                        "Data Upload Failed",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    progressDialog.dismiss()
+                                }
+                        }
                     }
                 }
-            }
-            .addOnFailureListener {
-                // Handle the error
-                Toast.makeText(this@Notice, "Image Upload Failed", Toast.LENGTH_SHORT).show()
-                progressDialog.dismiss()
-            }
+                .addOnFailureListener {
+                    // Handle the error
+                    Toast.makeText(this@Notice, "Image Upload Failed", Toast.LENGTH_SHORT).show()
+                    progressDialog.dismiss()
+                }
+        } else {
+            Toast.makeText(this@Notice, "Please select an image", Toast.LENGTH_SHORT).show()
+        }
     }
 }
