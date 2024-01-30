@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.example.backendsabkasewak.databinding.ActivityResultBinding
+import com.example.backendsabkasewak.databinding.ActivityNoticeBinding
 import com.example.backendsabkasewak.db.NoticeItem
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -19,7 +19,7 @@ import java.util.*
 
 class Result : AppCompatActivity() {
 
-    private lateinit var binding: ActivityResultBinding
+    private lateinit var binding: ActivityNoticeBinding
     private lateinit var database: DatabaseReference
 
     private val pickImage =
@@ -40,7 +40,7 @@ class Result : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityResultBinding.inflate(layoutInflater)
+        binding = ActivityNoticeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         database = FirebaseDatabase.getInstance().getReference().child("Result")
@@ -75,26 +75,26 @@ class Result : AppCompatActivity() {
         val imageUri = binding.imgview.tag?.toString() ?: ""
         val pdfUri = binding.pdfchoose.tag?.toString() ?: ""
 
-        if (title.isNotEmpty() && link.isNotEmpty() && imageUri.isNotEmpty() && pdfUri.isNotEmpty()) {
-            val currentDate = SimpleDateFormat("yyyy_MM_dd", Locale.getDefault()).format(Date())
-            val entryKey = database.child(currentDate).push().key
+//        if (title.isNotEmpty() && link.isNotEmpty() && imageUri.isNotEmpty() && pdfUri.isNotEmpty()) {
+        val currentDate = SimpleDateFormat("yyyy_MM_dd", Locale.getDefault()).format(Date())
+        val entryKey = database.child(currentDate).push().key
 
-            entryKey?.let {
-                val noticeItem = NoticeItem(imageUri, pdfUri, title, link)
-                database.child(currentDate).child(entryKey).setValue(noticeItem)
+        entryKey?.let {
+            val noticeItem = NoticeItem(title,link,imageUri,pdfUri)
+            database.child(currentDate).child(entryKey).setValue(noticeItem)
 
-                Toast.makeText(this, "Data Uploaded", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Data Uploaded", Toast.LENGTH_SHORT).show()
 
-                // Clear input fields
-                binding.tittle.text.clear()
-                binding.link.text.clear()
-                binding.imgview.setImageDrawable(null)
+            // Clear input fields
+            binding.tittle.text.clear()
+            binding.link.text.clear()
+            binding.imgview.setImageDrawable(null)
 
-            }
-        } else {
-            // Show a toast message if any field is empty
-            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
         }
+//        } else {
+//            // Show a toast message if any field is empty
+//            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
+//        }
     }
 
     private fun saveFileToDatabase(uri: Uri?, fileType: String) {
