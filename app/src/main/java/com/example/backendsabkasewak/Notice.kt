@@ -67,12 +67,12 @@ class Notice : AppCompatActivity() {
         val link = binding.link.text.toString()
         val pdfUri = binding.pdfchoose.tag?.toString() ?: ""
 
-        if (imageuri != null) {
-            val progressDialog = ProgressDialog(this)
-            progressDialog.setMessage("Uploading file...")
-            progressDialog.setCancelable(false)
-            progressDialog.show()
+        val progressDialog = ProgressDialog(this)
+        progressDialog.setMessage("Uploading file...")
+        progressDialog.setCancelable(false)
+        progressDialog.show()
 
+        if (::imageuri.isInitialized) { // Check if imageuri is initialized (image is selected)
             val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
             val storageReference = FirebaseStorage.getInstance().reference.child("images/$timestamp.jpg")
 
@@ -114,8 +114,34 @@ class Notice : AppCompatActivity() {
                     Toast.makeText(this@Notice, "Image Upload Failed", Toast.LENGTH_SHORT).show()
                     progressDialog.dismiss()
                 }
-        } else {
-            Toast.makeText(this@Notice, "Please select an image", Toast.LENGTH_SHORT).show()
+        } else { // Image is not selected, upload text and link only
+            val currentDate = SimpleDateFormat("yyyy_MM_dd", Locale.getDefault()).format(Date())
+            val entryKey = database.child(currentDate).push().key
+
+            entryKey?.let {
+                val noticeItem = NoticeItem(title, link, "", pdfUri)
+                database.child(currentDate).child(entryKey).setValue(noticeItem)
+                    .addOnSuccessListener {
+                        Toast.makeText(
+                            this@Notice,
+                            "Data Uploaded Successfully",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        binding.tittle.text.clear()
+                        binding.link.text.clear()
+                        progressDialog.dismiss()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(
+                            this@Notice,
+                            "Data Upload Failed",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        progressDialog.dismiss()
+                    }
+            }
         }
     }
+
+
 }
