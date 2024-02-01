@@ -6,10 +6,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.backendsabkasewak.databinding.ActivityNoticeBinding
-import com.example.backendsabkasewak.databinding.ActivityResultBinding
 import com.example.backendsabkasewak.db.NoticeItem
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -19,16 +17,16 @@ import java.util.*
 
 class Result : AppCompatActivity() {
 
-    private lateinit var binding:ActivityResultBinding
+    private lateinit var binding: ActivityNoticeBinding
     private lateinit var database: DatabaseReference
     private lateinit var imageuri: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityResultBinding.inflate(layoutInflater)
+        binding = ActivityNoticeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        database = FirebaseDatabase.getInstance().getReference().child("Notice")
+        database = FirebaseDatabase.getInstance().getReference().child("Result")
 
         binding.imgchoose.setOnClickListener {
             openGalleryForImage()
@@ -73,16 +71,19 @@ class Result : AppCompatActivity() {
         progressDialog.setCancelable(false)
         progressDialog.show()
 
-        if (::imageuri.isInitialized) { // Check if imageuri is initialized (image is selected)
+        // Check if imageuri is initialized and not equal to the default Uri
+        if (::imageuri.isInitialized && imageuri != Uri.EMPTY) {
             val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
-            val storageReference = FirebaseStorage.getInstance().reference.child("images/$timestamp.jpg")
+            val storageReference =
+                FirebaseStorage.getInstance().reference.child("images/$timestamp.jpg")
 
             storageReference.putFile(imageuri)
                 .addOnSuccessListener { taskSnapshot ->
                     // Image uploaded successfully, get the download URL
                     storageReference.downloadUrl.addOnSuccessListener { downloadUri ->
                         // Save image URL to Realtime Database
-                        val currentDate = SimpleDateFormat("yyyy_MM_dd", Locale.getDefault()).format(Date())
+                        val currentDate =
+                            SimpleDateFormat("yyyy_MM_dd", Locale.getDefault()).format(Date())
                         val entryKey = database.child(currentDate).push().key
 
                         entryKey?.let {
@@ -94,10 +95,16 @@ class Result : AppCompatActivity() {
                                         "Data Uploaded Successfully",
                                         Toast.LENGTH_SHORT
                                     ).show()
+
+                                    // Clear form fields after successful upload
                                     binding.tittle.text.clear()
                                     binding.link.text.clear()
                                     binding.imgview.setImageDrawable(null)
+                                    binding.pdfchoose.tag = null
                                     progressDialog.dismiss()
+
+                                    // Reset imageuri after successful upload
+                                    imageuri = Uri.EMPTY
                                 }
                                 .addOnFailureListener {
                                     Toast.makeText(
@@ -115,8 +122,9 @@ class Result : AppCompatActivity() {
                     Toast.makeText(this@Result, "Image Upload Failed", Toast.LENGTH_SHORT).show()
                     progressDialog.dismiss()
                 }
-        } else { // Image is not selected, upload text and link only
-            val currentDate = SimpleDateFormat("yyyy_MM_dd", Locale.getDefault()).format(Date())
+        } else { // Image is not explicitly selected, upload text and link only
+            val currentDate =
+                SimpleDateFormat("yyyy_MM_dd", Locale.getDefault()).format(Date())
             val entryKey = database.child(currentDate).push().key
 
             entryKey?.let {
@@ -128,8 +136,12 @@ class Result : AppCompatActivity() {
                             "Data Uploaded Successfully",
                             Toast.LENGTH_SHORT
                         ).show()
+
+                        // Clear form fields after successful upload
                         binding.tittle.text.clear()
                         binding.link.text.clear()
+                        binding.imgview.setImageDrawable(null)
+                        binding.pdfchoose.tag = null
                         progressDialog.dismiss()
                     }
                     .addOnFailureListener {
@@ -143,6 +155,4 @@ class Result : AppCompatActivity() {
             }
         }
     }
-
-
 }
