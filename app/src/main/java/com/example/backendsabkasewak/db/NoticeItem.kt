@@ -5,6 +5,7 @@ data class NoticeItem(
 val title: String,
 val link: String,
 val imageUrl: String,
-val pdfUrl: String
+val pdfUrl: String,
+val date: String
 
 )
