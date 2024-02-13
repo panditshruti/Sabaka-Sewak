@@ -51,7 +51,7 @@
         android:padding="10dp"
         android:textStyle="bold"
         android:layout_gravity="center"
-        android:id="@+id/imgchoose"
+        android:id="@+id/imgchoose1"
         />
     <Button
         android:layout_width="wrap_content"

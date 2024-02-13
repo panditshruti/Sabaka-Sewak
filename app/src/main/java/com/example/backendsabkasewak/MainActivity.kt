@@ -28,9 +28,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.vacancyNotice.setOnClickListener {
-            val intent = Intent(this, VacancyNotice::class.java)
-            startActivity(intent)
-        }
+//        binding.vacancyNotice.setOnClickListener {
+//            val intent = Intent(this, VacancyNotice::class.java)
+//            startActivity(intent)
+//        }
     }
 }

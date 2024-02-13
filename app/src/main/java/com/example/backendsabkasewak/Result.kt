@@ -6,7 +6,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.backendsabkasewak.databinding.ActivityNoticeBinding
 import com.example.backendsabkasewak.databinding.ActivityResultBinding
 import com.example.backendsabkasewak.db.NoticeItem
 import com.google.firebase.database.DatabaseReference
@@ -41,7 +40,7 @@ class Result : AppCompatActivity() {
         }
     }
 
-    fun openGalleryForImage() {
+    private fun openGalleryForImage() {
         val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
@@ -59,14 +58,14 @@ class Result : AppCompatActivity() {
         }
     }
 
-    fun openPdfFile() {
+   private fun openPdfFile() {
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.addCategory(Intent.CATEGORY_OPENABLE)
         intent.type = "application/pdf"
         startActivityForResult(intent, 200)
     }
 
-    fun submitData() {
+  private  fun submitData() {
         val title = binding.tittle.text.toString()
         val link = binding.link.text.toString()
         val imageUriString = binding.imgview.tag?.toString() ?: ""

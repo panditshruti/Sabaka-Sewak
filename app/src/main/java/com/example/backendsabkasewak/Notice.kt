@@ -28,7 +28,7 @@ class Notice : AppCompatActivity() {
 
         database = FirebaseDatabase.getInstance().getReference().child("Notice")
 
-        binding.imgchoose.setOnClickListener {
+        binding.imgchoose1.setOnClickListener {
             openGalleryForImage()
         }
         binding.pdfchoose.setOnClickListener {
@@ -81,6 +81,7 @@ class Notice : AppCompatActivity() {
             val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
             val imageStorageReference =
                 FirebaseStorage.getInstance().reference.child("images/$timestamp.jpg")
+
 
             // Upload the image to Firebase Storage
             imageStorageReference.putFile(imageUri)
