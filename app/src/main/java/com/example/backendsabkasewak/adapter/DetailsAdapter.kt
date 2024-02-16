@@ -32,7 +32,6 @@ class DetailsAdapter(
         val current: TextView = itemView.findViewById(R.id.current)
         val currentDate: TextView = itemView.findViewById(R.id.date)
         val image1: ImageView = itemView.findViewById(R.id.image1)
-        val image2: ImageView = itemView.findViewById(R.id.image2)
     }
 
 
@@ -63,7 +62,7 @@ class DetailsAdapter(
 
 
         Glide.with(context).load(details.image1).into(holder.image1)
-        Glide.with(context).load(details.image2).into(holder.image2)
+
 
 
     }

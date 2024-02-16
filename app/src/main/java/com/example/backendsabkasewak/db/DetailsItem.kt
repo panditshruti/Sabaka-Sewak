@@ -16,6 +16,5 @@ data class DetailsItem(
     val entranceExam:String,
     val currentExam:String,
     val date:String,
-    val image1:String ? = " ",
-    val image2:String ? = " "
+    val image1:String ? = " "
 )

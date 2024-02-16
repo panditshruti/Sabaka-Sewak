@@ -19,14 +19,6 @@
             android:layout_weight="1"
             android:layout_gravity="center"
             />
-        <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:id="@+id/image2"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            />
-
 
     </LinearLayout>
 
@@ -155,7 +147,7 @@
         android:id="@+id/date"
         android:text="link"
         android:layout_margin="5dp"
-    android:textSize="16dp"
+    android:textSize="13dp"
     android:layout_gravity="end"
     android:textColor="@color/purple_700"
         />

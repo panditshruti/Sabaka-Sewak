@@ -54,13 +54,12 @@ class StudentDetails : AppCompatActivity() {
                         val current = data.child("currentAffairs").value as? String
                         val currentDate = data.child("CurrentDate").value as? String
                         val image1 = data.child("uri1").value as? String
-                        val image2 = data.child("uri2").value as? String
 
                         Log.d("Details", "Name: $name, mobile: $mobile, email: $email, address: $address")
 
                         // Corrected constructor parameters
                         arrayList.add(DetailsItem("Name - "+name!!, "Mobbile-no - "+mobile!!, "Email-Id - "+email!!, "Address - "+address!!,"SchoolExam - "+school!!,"SSCExam - "+ssc!!,"RailwayExam - "+railway!!
-                            ,"DefenceExam - "+defence!!,"PoliceExam - "+police!!,"CivilExam - "+civil!!,"BankingExam - "+banking!!,"entranceExam - "+entrance!!,"CurrentAffairs - "+current!!,"Date - "+currentDate!!,image1!!,image2!! ))
+                            ,"DefenceExam - "+defence!!,"PoliceExam - "+police!!,"CivilExam - "+civil!!,"BankingExam - "+banking!!,"entranceExam - "+entrance!!,"CurrentAffairs - "+current!!,"Date - "+currentDate!!,image1!! ))
                     }
 
                     detailsAdapter.notifyDataSetChanged()
