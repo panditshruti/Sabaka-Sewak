@@ -43,23 +43,18 @@ class StudentDetails : AppCompatActivity() {
                         val mobile = data.child("phone No-").value as? String  // Corrected field name
                         val email = data.child("email").value as? String
                         val address = data.child("address").value as? String
-                        val school = data.child("schoolExam").value as? String
-                        val ssc = data.child("sscExam").value as? String
-                        val railway = data.child("railwayExam").value as? String
-                        val defence = data.child("defenseExam").value as? String
-                        val police = data.child("policeExam").value as? String
-                        val civil = data.child("civilServices").value as? String
-                        val banking = data.child("banking").value as? String
-                        val entrance = data.child("entrance").value as? String
-                        val current = data.child("currentAffairs").value as? String
+                        val examCategories = data.child("schoolExam").value as? ArrayList<String>
                         val currentDate = data.child("CurrentDate").value as? String
                         val image1 = data.child("uri1").value as? String
 
                         Log.d("Details", "Name: $name, mobile: $mobile, email: $email, address: $address")
 
                         // Corrected constructor parameters
-                        arrayList.add(DetailsItem("Name - "+name!!, "Mobbile-no - "+mobile!!, "Email-Id - "+email!!, "Address - "+address!!,"SchoolExam - "+school!!,"SSCExam - "+ssc!!,"RailwayExam - "+railway!!
-                            ,"DefenceExam - "+defence!!,"PoliceExam - "+police!!,"CivilExam - "+civil!!,"BankingExam - "+banking!!,"entranceExam - "+entrance!!,"CurrentAffairs - "+current!!,"Date - "+currentDate!!,image1!! ))
+                        examCategories?.let {
+                            DetailsItem("Name - "+name!!, "Mobbile-no - "+mobile!!, "Email-Id - "+email!!, "Address - "+address!!,
+                                it,
+                                "Date - "+currentDate!!,image1!! )
+                        }?.let { arrayList.add(it) }
                     }
 
                     detailsAdapter.notifyDataSetChanged()
