@@ -22,7 +22,6 @@ class DetailsAdapter(
         val email: TextView = itemView.findViewById(R.id.email)
         val address: TextView = itemView.findViewById(R.id.address)
         val defence: TextView = itemView.findViewById(R.id.defence)
-
         val currentDate: TextView = itemView.findViewById(R.id.date)
         val image1: ImageView = itemView.findViewById(R.id.image1)
     }
@@ -43,7 +42,7 @@ class DetailsAdapter(
             holder.email.text = details.emailId
             holder.address.text = details.address
             holder.currentDate.text = details.date
-            holder.defence.text = details.examCategories.toString()
+            holder.defence.text = details.examCategories
 
 
         Glide.with(context).load(details.image1).into(holder.image1)

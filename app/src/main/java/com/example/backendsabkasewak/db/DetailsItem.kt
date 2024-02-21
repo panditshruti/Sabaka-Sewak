@@ -6,7 +6,7 @@ data class DetailsItem(
     val mobbile: String,
     val emailId:String,
     val address:String,
-    val examCategories:ArrayList<String>,
+    val examCategories: String,
     val date:String,
     val image1:String ? = " "
 )

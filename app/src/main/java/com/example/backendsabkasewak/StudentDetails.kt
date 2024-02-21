@@ -38,23 +38,29 @@ class StudentDetails : AppCompatActivity() {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
+                    arrayList.clear() // Clear the existing data before adding new data
+
                     for (data in snapshot.children) {
                         val name = data.child("name").value as? String
-                        val mobile = data.child("phone No-").value as? String  // Corrected field name
+                        val mobile = data.child("phone No-").value as? String
                         val email = data.child("email").value as? String
                         val address = data.child("address").value as? String
-                        val examCategories = data.child("schoolExam").value as? ArrayList<String>
+                        val examCategories = data.child("schoolExam").value as? String
                         val currentDate = data.child("CurrentDate").value as? String
                         val image1 = data.child("uri1").value as? String
 
                         Log.d("Details", "Name: $name, mobile: $mobile, email: $email, address: $address")
 
-                        // Corrected constructor parameters
-                        examCategories?.let {
-                            DetailsItem("Name - "+name!!, "Mobbile-no - "+mobile!!, "Email-Id - "+email!!, "Address - "+address!!,
-                                it,
-                                "Date - "+currentDate!!,image1!! )
-                        }?.let { arrayList.add(it) }
+                        val detailsItem = DetailsItem(
+                            "Name - $name!!",
+                            "Mobile-no - $mobile!!",
+                            "Email-Id - $email!!",
+                            "Address - $address!!",
+                            examCategories!!,
+                            "Date - $currentDate!!",
+                            image1!!
+                        )
+                        arrayList.add(detailsItem)
                     }
 
                     detailsAdapter.notifyDataSetChanged()
