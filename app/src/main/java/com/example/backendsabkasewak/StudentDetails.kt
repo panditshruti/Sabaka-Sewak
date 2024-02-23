@@ -47,7 +47,7 @@ class StudentDetails : AppCompatActivity() {
                         val address = data.child("address").value as? String
                         val examCategories = data.child("schoolExam").value as? String
                         val currentDate = data.child("CurrentDate").value as? String
-                        val image1 = data.child("uri1").value as? String
+                        val image1 = data.child("uri").value as? String
 
                         Log.d("Details", "Name: $name, mobile: $mobile, email: $email, address: $address")
 
