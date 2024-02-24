@@ -1,4 +1,4 @@
-package com.example.backendsabkasewak
+package com.example.backendsabkasewak.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

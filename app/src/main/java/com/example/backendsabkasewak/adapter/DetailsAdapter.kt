@@ -7,10 +7,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.backendsabkasewak.R
 import com.example.backendsabkasewak.db.DetailsItem
-
+import com.squareup.picasso.Picasso
 
 class DetailsAdapter(
     private var detailsList: ArrayList<DetailsItem>, private var context: Context
@@ -45,7 +44,7 @@ class DetailsAdapter(
             holder.defence.text = details.examCategories
 
 
-        Glide.with(context).load(details.image1).into(holder.image1)
+        Picasso.get().load(details.image1).into(holder.image1)
 
 
 

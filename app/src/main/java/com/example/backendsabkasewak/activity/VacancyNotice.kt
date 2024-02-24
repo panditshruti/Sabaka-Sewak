@@ -1,12 +1,10 @@
-package com.example.backendsabkasewak
+package com.example.backendsabkasewak.activity
 
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import com.bumptech.glide.Glide
-import com.example.backendsabkasewak.databinding.ActivityNoticeBinding
 import com.example.backendsabkasewak.databinding.ActivityVacancyNoticeBinding
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
@@ -110,9 +108,9 @@ class VacancyNotice : AppCompatActivity() {
                     // Load the image or display the PDF based on the type
                     uriString?.let {
                         if (fileType == "image") {
-                            Glide.with(this@VacancyNotice)
-                                .load(Uri.parse(it))
-                                .into(binding.imgview)
+//                            Glide.with(this@VacancyNotice)
+//                                .load(Uri.parse(it))
+//                                .into(binding.imgview)
                         } else if (fileType == "pdf") {
                             // Handle displaying PDF as needed
                             // You can use a PDF viewer library or open the PDF in an external app

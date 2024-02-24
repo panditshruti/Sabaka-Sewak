@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_margin="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="#EDE9CE"
+        android:elevation="5dp"
+        app:cardCornerRadius="15dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="MissingClass">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/title"
+                android:layout_gravity="center"
+                android:text="title"
+                android:layout_margin="5dp"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:textColor="#CF0E00"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/link"
+                android:text="link"
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:textSize="16dp"
+                android:textColor="@color/purple_700"
+                />
+
+            <ImageView
+                android:id="@+id/imageuser"
+                android:layout_width="match_parent"
+                android:src="@drawable/gallary"
+                android:layout_margin="10dp"
+                android:layout_height="400dp"
+                />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:id="@+id/pdfOpen"
+                android:src="@drawable/baseline_picture_as_pdf_24"
+                android:layout_gravity="center"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/date"
+                android:text="date"
+                android:layout_gravity="end"
+                android:textSize="13dp"
+                android:layout_margin="10dp"
+                android:textColor="@color/black"
+                />
+
+        </LinearLayout>
+
+
+
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_delete_24"
+        android:layout_margin="10dp"
+        android:id="@+id/delteitem"
+        android:visibility="gone"
+        android:layout_gravity="end"
+        />
+
+
+
+
+</LinearLayout>

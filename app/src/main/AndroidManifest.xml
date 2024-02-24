@@ -15,19 +15,28 @@
         android:theme="@style/Theme.BackendSabkaSewak"
         tools:targetApi="31">
         <activity
-            android:name=".VacancyNotice"
+            android:name=".activity.EditResult"
             android:exported="false" />
         <activity
-            android:name=".StudentDetails"
+            android:name=".activity.PdfViwer"
             android:exported="false" />
         <activity
-            android:name=".Result"
+            android:name=".activity.EditNotice"
             android:exported="false" />
         <activity
-            android:name=".Notice"
+            android:name=".activity.VacancyNotice"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.StudentDetails"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Result"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Notice"
+            android:exported="false" />
+        <activity
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
