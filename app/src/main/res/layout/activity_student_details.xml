@@ -7,10 +7,32 @@
     android:layout_height="match_parent"
     tools:context=".activity.StudentDetails">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/recyclerview"
-        />
+        android:layout_gravity="top"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
 
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#6A5F00"
+            app:tabTextColor="@color/white"
+            app:tabSelectedTextColor="#FDEDC0"
+            app:tabIndicatorColor="#303030"
+            app:tabIndicatorHeight="4dp"
+            app:tabMode="fixed"
+            app:tabGravity="fill" />
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tabLayout"/>
+
+
+    </LinearLayout>
 </LinearLayout>

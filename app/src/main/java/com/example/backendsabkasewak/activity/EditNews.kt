@@ -2,14 +2,14 @@ package com.example.backendsabkasewak.activity
 
 import android.content.Intent
 import android.os.Build
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.backendsabkasewak.adapter.NoticeAdapterN
-import com.example.backendsabkasewak.databinding.ActivityEditNoticeBinding
-import com.example.backendsabkasewak.databinding.ActivityEditResultBinding
+import com.example.backendsabkasewak.databinding.ActivityEditNewsBinding
+
 import com.example.backendsabkasewak.db.NoticeItemSec
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -17,27 +17,28 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class EditResult : AppCompatActivity() {
-    private lateinit var binding: ActivityEditResultBinding
+class EditNews : AppCompatActivity() {
+
+    private lateinit var binding: ActivityEditNewsBinding
     private lateinit var db: DatabaseReference
     private lateinit var arrayList: ArrayList<NoticeItemSec>
     private lateinit var noticeAdapter: NoticeAdapterN
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityEditResultBinding.inflate(layoutInflater)
+        binding = ActivityEditNewsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        db = FirebaseDatabase.getInstance().reference.child("Result")
+        db = FirebaseDatabase.getInstance().reference.child("News")
         arrayList = arrayListOf()
 
-        noticeAdapter = NoticeAdapterN(arrayList, this@EditResult)
+        noticeAdapter = NoticeAdapterN(arrayList, this@EditNews)
         binding.recyclerview.adapter = noticeAdapter
         binding.recyclerview.layoutManager = LinearLayoutManager(this)
         fetchNotice()
 
-        binding.result.setOnClickListener {
-            val intent = Intent(this,Result::class.java)
+        binding.news.setOnClickListener {
+            val intent = Intent(this, Notice::class.java)
             startActivity(intent)
         }
     }
@@ -74,13 +75,14 @@ class EditResult : AppCompatActivity() {
                 if (position >= 0 && position < arrayList.size) {
                     val selectedItem = arrayList[position]
                     val selectedKey = selectedItem.key
+
                     if (!selectedKey.isNullOrBlank()) {
                         db.child(selectedKey).removeValue()
                     }
                 }
             }
 
+
         })
     }
 }
-

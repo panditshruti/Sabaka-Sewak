@@ -15,6 +15,15 @@
         android:theme="@style/Theme.BackendSabkaSewak"
         tools:targetApi="31">
         <activity
+            android:name=".activity.EditNews"
+            android:exported="false" />
+        <activity
+            android:name=".activity.School"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Library"
+            android:exported="false" />
+        <activity
             android:name=".activity.EditResult"
             android:exported="false" />
         <activity
@@ -24,7 +33,7 @@
             android:name=".activity.EditNotice"
             android:exported="false" />
         <activity
-            android:name=".activity.VacancyNotice"
+            android:name=".activity.News"
             android:exported="false" />
         <activity
             android:name=".activity.StudentDetails"
