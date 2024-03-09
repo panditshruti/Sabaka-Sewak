@@ -60,16 +60,53 @@
                 android:layout_gravity="center"
                 />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/date"
-                android:text="date"
-                android:layout_gravity="end"
-                android:textSize="13dp"
-                android:layout_margin="10dp"
-                android:textColor="@color/black"
-                />
+                android:orientation="horizontal"
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+
+                    <TextView
+                        android:id="@+id/prise"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:gravity="center"
+                        android:visibility="visible"
+                        android:layout_margin="10dp"
+                        android:textStyle="bold"
+                        android:text="prise"
+                        android:textColor="#F61100"
+                        android:textSize="14dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_margin="10dp"
+                        android:text="date"
+                        android:gravity="center"
+                        android:textColor="@color/purple_700"
+                        android:textSize="13dp" />
+
+                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -88,5 +125,5 @@
         android:layout_gravity="end"
         />
 
-    
+
 </LinearLayout>

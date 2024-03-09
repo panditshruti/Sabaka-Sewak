@@ -53,11 +53,12 @@ class EditResult : AppCompatActivity() {
                         val img = data.child("imageUrl").getValue(String::class.java) ?: ""
                         val pdf = data.child("pdfUrl").getValue(String::class.java) ?: ""
                         val date = data.child("date").getValue(String::class.java) ?: ""
+                        val prise = data.child("prise").getValue(String::class.java) ?: ""
 
                         Log.d("Notice", "Title: $title, Link: $link, Image: $img")
 
                         val key = data.key ?: ""
-                        arrayList.add(NoticeItemSec(img, pdf, title, link, date, key))
+                        arrayList.add(NoticeItemSec(img, pdf, title, link, prise,date, key))
                     }
 
                     noticeAdapter.notifyDataSetChanged()

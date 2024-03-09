@@ -5,6 +5,7 @@ data class NoticeItemSec(
     val pdf: String? = "",
     val title: String? = "",
     val link: String? = "",
+    val prise: String? = "",
     val date: String,
     val key: String = ""  // Add a key property for Firebase unique identifier
 )

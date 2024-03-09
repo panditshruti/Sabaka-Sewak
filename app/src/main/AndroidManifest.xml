@@ -15,6 +15,15 @@
         android:theme="@style/Theme.BackendSabkaSewak"
         tools:targetApi="31">
         <activity
+            android:name=".activity.Notes"
+            android:exported="false" />
+        <activity
+            android:name=".activity.EditBook"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Book"
+            android:exported="false" />
+        <activity
             android:name=".activity.EditNews"
             android:exported="false" />
         <activity

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    android:layout_height="match_parent"
+    tools:context=".activity.Notice">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:gravity="center"
+            android:orientation="horizontal"
+            >
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Book"
+                android:layout_weight="1"
+                android:backgroundTint="#C6C6C6"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:id="@+id/book"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit Book"
+                android:layout_weight="1"
+                android:backgroundTint="#C6C6C6"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:id="@+id/editbook"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Tittle"
+                android:id="@+id/tittle"
+                android:layout_margin="10dp"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Link"
+                android:id="@+id/link"
+                android:layout_margin="10dp"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter prise"
+                android:id="@+id/prise"
+                android:layout_margin="10dp"
+                />
+
+            <ImageView
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/gallary"
+                android:layout_gravity="center"
+                android:id="@+id/imgview"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                >
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chose Image"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#B30000"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:id="@+id/imgchoose1"
+                    />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chose pdf"
+                    android:layout_margin="10dp"
+                    android:backgroundTint="#007504"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:padding="10dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/pdfchoose"
+                    />
+
+            </LinearLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="submit"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:id="@+id/submit"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

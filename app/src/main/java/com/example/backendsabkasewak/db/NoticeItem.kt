@@ -8,4 +8,5 @@ val imageUrl: String,
 val pdfUrl: String,
 val date: String
 
+
 )

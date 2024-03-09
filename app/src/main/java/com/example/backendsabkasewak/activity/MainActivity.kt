@@ -32,5 +32,13 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, News::class.java)
             startActivity(intent)
         }
+        binding.book.setOnClickListener {
+            val intent = Intent(this, Book::class.java)
+            startActivity(intent)
+        }
+        binding.notes.setOnClickListener {
+            val intent = Intent(this, Notes::class.java)
+            startActivity(intent)
+        }
     }
 }

@@ -9,4 +9,5 @@ data class DetailsItem(
     val examCategories: String,
     val date:String,
     val image1:String ? = " "
+
 )
