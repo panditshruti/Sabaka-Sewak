@@ -15,7 +15,16 @@
         android:theme="@style/Theme.BackendSabkaSewak"
         tools:targetApi="31">
         <activity
-            android:name=".activity.Notes"
+            android:name=".activity.EditStanza"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Stanja"
+            android:exported="false" />
+        <activity
+            android:name=".activity.EditDpps"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Dpp"
             android:exported="false" />
         <activity
             android:name=".activity.EditBook"

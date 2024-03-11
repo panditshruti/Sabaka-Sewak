@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.backendsabkasewak.adapter.NoticeAdapterN
 import com.example.backendsabkasewak.databinding.ActivityEditNoticeBinding
+import com.example.backendsabkasewak.databinding.ActivityNoticeBinding
 import com.example.backendsabkasewak.db.NoticeItemSec
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
