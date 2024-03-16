@@ -37,7 +37,7 @@ class EditNotice : AppCompatActivity() {
         fetchNotice()
 
         binding.notice.setOnClickListener {
-           val intent = Intent(this,Notice::class.java)
+            val intent = Intent(this,Notice::class.java)
             startActivity(intent)
         }
     }
@@ -46,6 +46,7 @@ class EditNotice : AppCompatActivity() {
         db.addValueEventListener(object : ValueEventListener {
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onDataChange(snapshot: DataSnapshot) {
+                arrayList.clear()
                 if (snapshot.exists()) {
                     for (data in snapshot.children) {
                         val title = data.child("title").getValue(String::class.java) ?: ""
@@ -60,8 +61,8 @@ class EditNotice : AppCompatActivity() {
                         val key = data.key ?: ""
                         arrayList.add(NoticeItemSec(img, pdf, title, link, prise,date, key))
                     }
+noticeAdapter.notifyDataSetChanged()
 
-                    noticeAdapter.notifyDataSetChanged()
                 }
             }
 
@@ -78,12 +79,11 @@ class EditNotice : AppCompatActivity() {
 
                     if (!selectedKey.isNullOrBlank()) {
                         db.child(selectedKey).removeValue()
+                        noticeAdapter.updateData(arrayList)
                     }
                 }
             }
 
-
         })
     }
 }
-

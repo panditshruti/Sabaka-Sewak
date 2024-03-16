@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.backendsabkasewak.adapter.NoticeAdapterN
 import com.example.backendsabkasewak.databinding.ActivityEditNoticeBinding
 import com.example.backendsabkasewak.databinding.ActivityEditResultBinding
+import com.example.backendsabkasewak.databinding.ActivityNoticeBinding
 import com.example.backendsabkasewak.db.NoticeItemSec
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -46,6 +47,7 @@ class EditResult : AppCompatActivity() {
         db.addValueEventListener(object : ValueEventListener {
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onDataChange(snapshot: DataSnapshot) {
+                arrayList.clear()
                 if (snapshot.exists()) {
                     for (data in snapshot.children) {
                         val title = data.child("title").getValue(String::class.java) ?: ""
@@ -60,8 +62,8 @@ class EditResult : AppCompatActivity() {
                         val key = data.key ?: ""
                         arrayList.add(NoticeItemSec(img, pdf, title, link, prise,date, key))
                     }
-
                     noticeAdapter.notifyDataSetChanged()
+
                 }
             }
 
@@ -75,8 +77,10 @@ class EditResult : AppCompatActivity() {
                 if (position >= 0 && position < arrayList.size) {
                     val selectedItem = arrayList[position]
                     val selectedKey = selectedItem.key
+
                     if (!selectedKey.isNullOrBlank()) {
                         db.child(selectedKey).removeValue()
+                        noticeAdapter.updateData(arrayList)
                     }
                 }
             }
@@ -84,4 +88,3 @@ class EditResult : AppCompatActivity() {
         })
     }
 }
-

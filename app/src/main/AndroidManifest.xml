@@ -15,6 +15,18 @@
         android:theme="@style/Theme.BackendSabkaSewak"
         tools:targetApi="31">
         <activity
+            android:name=".activity.EditSearch"
+            android:exported="false" />
+        <activity
+            android:name=".activity.FAQ"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Search"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Notes"
+            android:exported="false" />
+        <activity
             android:name=".activity.EditStanza"
             android:exported="false" />
         <activity

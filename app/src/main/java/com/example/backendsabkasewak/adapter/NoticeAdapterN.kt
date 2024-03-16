@@ -27,7 +27,11 @@ class NoticeAdapterN(
     interface OnItemClickListener {
         fun onDeleteClick(position: Int)
     }
-
+    fun updateData(newNoticeList: ArrayList<NoticeItemSec>) {
+        noticeList.clear() // Clear the current list
+        noticeList.addAll(newNoticeList) // Add new items
+        notifyDataSetChanged() // Notify adapter of the changes
+    }
     fun setOnItemClickListener(listener: OnItemClickListener) {
         this.onItemClickListener = listener
     }
@@ -48,6 +52,7 @@ class NoticeAdapterN(
 
             deltebtn.setOnClickListener {
                 onItemClickListener?.onDeleteClick(adapterPosition)
+
             }
         }
     }
@@ -73,7 +78,6 @@ class NoticeAdapterN(
 
         // Set link
         if (notice.link != "") {
-            holder.link.text = notice.link
 
             // Open link in a browser
             holder.link.setOnClickListener {
@@ -116,6 +120,8 @@ class NoticeAdapterN(
         } else {
             holder.openPdf.visibility = View.GONE
         }
+
+
     }
 
     override fun getItemCount(): Int {
