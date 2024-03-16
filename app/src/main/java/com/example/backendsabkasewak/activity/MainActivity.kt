@@ -44,17 +44,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, Stanja::class.java)
             startActivity(intent)
         }
-        binding.notes.setOnClickListener {
-            val intent = Intent(this, Notes::class.java)
-            startActivity(intent)
-        }
-
-          binding.faq.setOnClickListener {
-            val intent = Intent(this, FAQ::class.java)
-            startActivity(intent)
-        }
-
-
 
     }
 }
