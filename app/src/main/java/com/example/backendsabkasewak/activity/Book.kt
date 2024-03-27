@@ -32,12 +32,12 @@ class Book : AppCompatActivity() {
 
                 database = FirebaseDatabase.getInstance().getReference().child("Book")
 
-                binding.imgchoose1.setOnClickListener {
-                    openGalleryForImage()
-                }
-                binding.pdfchoose.setOnClickListener {
-                    openPdfFile()
-                }
+//                binding.imgchoose1.setOnClickListener {
+//                    openGalleryForImage()
+//                }
+//                binding.pdfchoose.setOnClickListener {
+//                    openPdfFile()
+//                }
 
                 binding.submit.setOnClickListener {
                     submitData()
@@ -59,10 +59,10 @@ class Book : AppCompatActivity() {
                 super.onActivityResult(requestCode, resultCode, data)
                 if (requestCode == 100 && resultCode == RESULT_OK) {
                     imageUri = data?.data!!
-                    binding.imgview.setImageURI(imageUri)
+//                    binding.imgview.setImageURI(imageUri)
                 } else if (requestCode == 200 && resultCode == RESULT_OK) {
                     pdfUri = data?.data!!
-                    binding.pdfchoose.tag = pdfUri.toString()
+//                    binding.pdfchoose.tag = pdfUri.toString()
                 }
             }
 
@@ -77,8 +77,8 @@ class Book : AppCompatActivity() {
                 val title = binding.tittle.text.toString()
                 val link = binding.link.text.toString()
                 val prise = binding.prise.text.toString()
-                val imageUriString = binding.imgview.tag?.toString() ?: ""
-                val pdfUriString = binding.pdfchoose.tag?.toString() ?: ""
+                val imageUriString = "binding.imgview.tag?.toString() ?: "
+                val pdfUriString = "binding.pdfchoose.tag?.toString() ?: "
 
                 val progressDialog = ProgressDialog(this)
                 progressDialog.setMessage("Uploading file...")
@@ -119,7 +119,7 @@ class Book : AppCompatActivity() {
                 val entryKey = database.push().key
 
                 entryKey?.let {
-                    if (pdfUri.isNotEmpty()) {
+                    if (pdfUri.isEmpty()) {
                         // If PDF is selected, upload it to Firebase Storage
                         val pdfTimestamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(
                             Date()
@@ -144,11 +144,11 @@ class Book : AppCompatActivity() {
 
                                             // Clear image view only if a new image is selected
                                             if (::imageUri.isInitialized ) {
-                                                binding.imgview.setImageResource(R.drawable.gallary)
-                                                binding.imgview.tag = null
+//                                                binding.imgview.setImageResource(R.drawable.gallary)
+//                                                binding.imgview.tag = null
                                             }
 
-                                            binding.pdfchoose.tag = null
+//                                            binding.pdfchoose.tag = null
 
                                             progressDialog.dismiss()
                                         }
@@ -176,11 +176,11 @@ class Book : AppCompatActivity() {
 
                                 // Clear image view only if a new image is selected
                                 if (::imageUri.isInitialized ) {
-                                    binding.imgview.setImageResource(R.drawable.gallary)
-                                    binding.imgview.tag = null
+//                                    binding.imgview.setImageResource(R.drawable.gallary)
+//                                    binding.imgview.tag = null
                                 }
 
-                                binding.pdfchoose.tag = null
+//                                binding.pdfchoose.tag = null
 
                                 progressDialog.dismiss()
                             }
