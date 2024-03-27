@@ -74,49 +74,49 @@
                 android:layout_margin="10dp"
                 />
 
-<!--            <ImageView-->
-<!--                android:layout_width="250dp"-->
-<!--                android:layout_height="250dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:src="@drawable/gallary"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:id="@+id/imgview"-->
-<!--                />-->
+            <ImageView
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/gallary"
+                android:layout_gravity="center"
+                android:id="@+id/imgview"
+                />
 
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:gravity="center"-->
-<!--                android:layout_margin="10dp"-->
-<!--                android:orientation="horizontal"-->
-<!--                >-->
-<!--                <Button-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Chose Image"-->
-<!--                    android:layout_margin="10dp"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:backgroundTint="#B30000"-->
-<!--                    android:padding="10dp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:id="@+id/imgchoose1"-->
-<!--                    />-->
-<!--                <Button-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Chose pdf"-->
-<!--                    android:layout_margin="10dp"-->
-<!--                    android:backgroundTint="#007504"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:padding="10dp"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:id="@+id/pdfchoose"-->
-<!--                    />-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                >
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chose Image"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#B30000"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:id="@+id/imgchoose1"
+                    />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chose pdf"
+                    android:layout_margin="10dp"
+                    android:backgroundTint="#007504"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:padding="10dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/pdfchoose"
+                    />
 
-<!--            </LinearLayout>-->
+            </LinearLayout>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

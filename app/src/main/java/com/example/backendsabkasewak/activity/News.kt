@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.backendsabkasewak.R
 import com.example.backendsabkasewak.databinding.ActivityNewsBinding
-import com.example.backendsabkasewak.databinding.ActivityNoticeBinding
 import com.example.backendsabkasewak.db.NoticeItem
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -31,12 +30,12 @@ class News : AppCompatActivity() {
 
         database = FirebaseDatabase.getInstance().getReference().child("News")
 
-//        binding.imgchoose1.setOnClickListener {
-//            openGalleryForImage()
-//        }
-//        binding.pdfchoose.setOnClickListener {
-//            openPdfFile()
-//        }
+        binding.imgchoose1.setOnClickListener {
+            openGalleryForImage()
+        }
+        binding.pdfchoose.setOnClickListener {
+            openPdfFile()
+        }
 
         binding.submit.setOnClickListener {
             submitData()
@@ -59,10 +58,10 @@ class News : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 100 && resultCode == RESULT_OK) {
             imageUri = data?.data!!
-//            binding.imgview.setImageURI(imageUri)
+            binding.imgview.setImageURI(imageUri)
         } else if (requestCode == 200 && resultCode == RESULT_OK) {
             pdfUri = data?.data!!
-//            binding.pdfchoose.tag = pdfUri.toString()
+            binding.pdfchoose.tag = pdfUri.toString()
         }
     }
 
@@ -76,8 +75,8 @@ class News : AppCompatActivity() {
     fun submitData() {
         val title = binding.tittle.text.toString()
         val link = binding.link.text.toString()
-//        val imageUriString = binding.imgview.tag?.toString() ?: ""
-//        val pdfUriString = binding.pdfchoose.tag?.toString() ?: ""
+        val imageUriString = binding.imgview.tag?.toString() ?: ""
+        val pdfUriString = binding.pdfchoose.tag?.toString() ?: ""
 
         val progressDialog = ProgressDialog(this)
         progressDialog.setMessage("Uploading file...")
@@ -97,7 +96,7 @@ class News : AppCompatActivity() {
                     // Image uploaded successfully, get the download URL
                     imageStorageReference.downloadUrl.addOnSuccessListener { imageDownloadUri ->
                         // Save image URL to Realtime Database
-                        saveToDatabase(title, link, imageDownloadUri.toString(), "pdfUriString", progressDialog)
+                        saveToDatabase(title, link, imageDownloadUri.toString(), pdfUriString, progressDialog)
                     }
                 }
                 .addOnFailureListener {
@@ -107,7 +106,7 @@ class News : AppCompatActivity() {
                 }
         } else {
             // Image is not explicitly selected, upload text and link only
-            saveToDatabase(title, link, "imageUriString", "pdfUriString", progressDialog)
+            saveToDatabase(title, link, imageUriString, pdfUriString, progressDialog)
         }
     }
 
@@ -138,11 +137,11 @@ class News : AppCompatActivity() {
 
                                     // Clear image view only if a new image is selected
                                     if (::imageUri.isInitialized ) {
-//                                        binding.imgview.setImageResource(R.drawable.gallary)
-//                                        binding.imgview.tag = null
+                                        binding.imgview.setImageResource(R.drawable.gallary)
+                                        binding.imgview.tag = null
                                     }
 
-//                                    binding.pdfchoose.tag = null
+                                    binding.pdfchoose.tag = null
 
                                     progressDialog.dismiss()
                                 }
@@ -170,11 +169,11 @@ class News : AppCompatActivity() {
 
                         // Clear image view only if a new image is selected
                         if (::imageUri.isInitialized ) {
-//                            binding.imgview.setImageResource(R.drawable.gallary)
-//                            binding.imgview.tag = null
+                            binding.imgview.setImageResource(R.drawable.gallary)
+                            binding.imgview.tag = null
                         }
 
-                   "     binding.pdfchoose.tag = null"
+                        binding.pdfchoose.tag = null
 
                         progressDialog.dismiss()
                     }
