@@ -29,15 +29,14 @@ class Notice : AppCompatActivity() {
 
 
 
-
         database = FirebaseDatabase.getInstance().getReference().child("Notice")
 
-        binding.imgchoose1.setOnClickListener {
-            openGalleryForImage()
-        }
-        binding.pdfchoose.setOnClickListener {
-            openPdfFile()
-        }
+//        binding.imgchoose1.setOnClickListener {
+//            openGalleryForImage()
+//        }
+//        binding.pdfchoose.setOnClickListener {
+//            openPdfFile()
+//        }
 
         binding.submit.setOnClickListener {
             submitData()
@@ -51,36 +50,36 @@ class Notice : AppCompatActivity() {
 
     }
 
-    fun openGalleryForImage() {
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(intent, 100)
-    }
+//    fun openGalleryForImage() {
+//        val intent = Intent()
+//        intent.type = "image/*"
+//        intent.action = Intent.ACTION_GET_CONTENT
+//        startActivityForResult(intent, 100)
+//    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 100 && resultCode == RESULT_OK) {
             imageUri = data?.data!!
-            binding.imgview.setImageURI(imageUri)
+//            binding.imgview.setImageURI(imageUri)
         } else if (requestCode == 200 && resultCode == RESULT_OK) {
             pdfUri = data?.data!!
-            binding.pdfchoose.tag = pdfUri.toString()
+//            binding.pdfchoose.tag = pdfUri.toString()
         }
     }
 
-    fun openPdfFile() {
-        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
-        intent.addCategory(Intent.CATEGORY_OPENABLE)
-        intent.type = "application/pdf"
-        startActivityForResult(intent, 200)
-    }
+//    fun openPdfFile() {
+//        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+//        intent.addCategory(Intent.CATEGORY_OPENABLE)
+//        intent.type = "application/pdf"
+//        startActivityForResult(intent, 200)
+//    }
 
     fun submitData() {
         val title = binding.tittle.text.toString()
         val link = binding.link.text.toString()
-        val imageUriString = binding.imgview.tag?.toString() ?: ""
-        val pdfUriString = binding.pdfchoose.tag?.toString() ?: ""
+//        val imageUriString = binding.imgview.tag?.toString() ?: ""
+//        val pdfUriString = binding.pdfchoose.tag?.toString() ?: ""
 
         val progressDialog = ProgressDialog(this)
         progressDialog.setMessage("Uploading file...")
@@ -100,7 +99,7 @@ class Notice : AppCompatActivity() {
                     // Image uploaded successfully, get the download URL
                     imageStorageReference.downloadUrl.addOnSuccessListener { imageDownloadUri ->
                         // Save image URL to Realtime Database
-                        saveToDatabase(title, link, imageDownloadUri.toString(), pdfUriString, progressDialog)
+                        saveToDatabase(title, link, imageDownloadUri.toString(), "pdfUriString", progressDialog)
                     }
                 }
                 .addOnFailureListener {
@@ -110,7 +109,7 @@ class Notice : AppCompatActivity() {
                 }
         } else {
             // Image is not explicitly selected, upload text and link only
-            saveToDatabase(title, link, imageUriString, pdfUriString, progressDialog)
+            saveToDatabase(title, link, "imageUriString", "pdfUriString", progressDialog)
         }
     }
 
@@ -141,11 +140,11 @@ class Notice : AppCompatActivity() {
 
                                     // Clear image view only if a new image is selected
                                     if (::imageUri.isInitialized ) {
-                                        binding.imgview.setImageResource(R.drawable.gallary)
-                                        binding.imgview.tag = null
+//                                        binding.imgview.setImageResource(R.drawable.gallary)
+//                                        binding.imgview.tag = null
                                     }
 
-                                    binding.pdfchoose.tag = null
+//                                    binding.pdfchoose.tag = null
 
                                     progressDialog.dismiss()
                                 }
@@ -173,11 +172,11 @@ class Notice : AppCompatActivity() {
 
                         // Clear image view only if a new image is selected
                         if (::imageUri.isInitialized ) {
-                            binding.imgview.setImageResource(R.drawable.gallary)
-                            binding.imgview.tag = null
+//                            binding.imgview.setImageResource(R.drawable.gallary)
+//                            binding.imgview.tag = null
                         }
 
-                        binding.pdfchoose.tag = null
+//                        binding.pdfchoose.tag = null
 
                         progressDialog.dismiss()
                     }

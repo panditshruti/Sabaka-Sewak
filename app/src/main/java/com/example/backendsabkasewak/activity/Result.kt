@@ -29,12 +29,12 @@ class Result : AppCompatActivity() {
 
         database = FirebaseDatabase.getInstance().getReference().child("Result")
 
-        binding.imgchoose1.setOnClickListener {
-            openGalleryForImage()
-        }
-        binding.pdfchoose.setOnClickListener {
-            openPdfFile()
-        }
+//        binding.imgchoose1.setOnClickListener {
+//            openGalleryForImage()
+//        }
+//        binding.pdfchoose.setOnClickListener {
+//            openPdfFile()
+//        }
 
         binding.submit.setOnClickListener {
             submitData()
@@ -59,10 +59,10 @@ class Result : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 100 && resultCode == RESULT_OK) {
             imageUri = data?.data!!
-            binding.imgview.setImageURI(imageUri)
+//            binding.imgview.setImageURI(imageUri)
         } else if (requestCode == 200 && resultCode == RESULT_OK) {
             pdfUri = data?.data!!
-            binding.pdfchoose.tag = pdfUri.toString()
+//            binding.pdfchoose.tag = pdfUri.toString()
         }
     }
 
@@ -76,8 +76,8 @@ class Result : AppCompatActivity() {
   private  fun submitData() {
         val title = binding.tittle.text.toString()
         val link = binding.link.text.toString()
-        val imageUriString = binding.imgview.tag?.toString() ?: ""
-        val pdfUriString = binding.pdfchoose.tag?.toString() ?: ""
+//        val imageUriString = binding.imgview.tag?.toString() ?: ""
+//        val pdfUriString = binding.pdfchoose.tag?.toString() ?: ""
 
         val progressDialog = ProgressDialog(this)
         progressDialog.setMessage("Uploading file...")
@@ -95,7 +95,7 @@ class Result : AppCompatActivity() {
                     // Image uploaded successfully, get the download URL
                     imageStorageReference.downloadUrl.addOnSuccessListener { imageDownloadUri ->
                         // Save image URL to Realtime Database
-                        saveToDatabase(title, link, imageDownloadUri.toString(), pdfUriString, progressDialog)
+                        saveToDatabase(title, link, imageDownloadUri.toString(), "pdfUriString", progressDialog)
                     }
                 }
                 .addOnFailureListener {
@@ -105,7 +105,7 @@ class Result : AppCompatActivity() {
                 }
         } else {
             // Image is not explicitly selected, upload text and link only
-            saveToDatabase(title, link, "", pdfUriString, progressDialog)
+            saveToDatabase(title, link, "", "pdfUriString", progressDialog)
         }
     }
 
@@ -133,8 +133,8 @@ class Result : AppCompatActivity() {
                                     // Clear form fields after successful upload
                                     binding.tittle.text.clear()
                                     binding.link.text.clear()
-                                    binding.imgview.setImageResource(R.drawable.gallary)
-                                    binding.pdfchoose.tag = null
+//                                    binding.imgview.setImageResource(R.drawable.gallary)
+//                                    binding.pdfchoose.tag = null
                                     progressDialog.dismiss()
                                 }
                                 .addOnFailureListener {
@@ -158,8 +158,8 @@ class Result : AppCompatActivity() {
                         // Clear form fields after successful upload
                         binding.tittle.text.clear()
                         binding.link.text.clear()
-                        binding.imgview.setImageDrawable(null)
-                        binding.pdfchoose.tag = null
+//                        binding.imgview.setImageDrawable(null)
+//                        binding.pdfchoose.tag = null
                         progressDialog.dismiss()
                     }
                     .addOnFailureListener {
