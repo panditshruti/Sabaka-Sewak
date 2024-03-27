@@ -137,7 +137,7 @@ class News : AppCompatActivity() {
 
                                     // Clear image view only if a new image is selected
                                     if (::imageUri.isInitialized ) {
-                                        binding.imgview.setImageResource(R.drawable.gallary)
+//                                        binding.imgview.setImageResource(R.drawable.gallary)
                                         binding.imgview.tag = null
                                     }
 
@@ -169,7 +169,7 @@ class News : AppCompatActivity() {
 
                         // Clear image view only if a new image is selected
                         if (::imageUri.isInitialized ) {
-                            binding.imgview.setImageResource(R.drawable.gallary)
+//                            binding.imgview.setImageResource(R.drawable.gallary)
                             binding.imgview.tag = null
                         }
 

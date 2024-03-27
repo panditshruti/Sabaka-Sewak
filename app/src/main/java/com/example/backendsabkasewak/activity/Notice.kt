@@ -6,7 +6,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.backendsabkasewak.R
 import com.example.backendsabkasewak.databinding.ActivityNoticeBinding
 import com.example.backendsabkasewak.db.NoticeItem
 import com.google.firebase.database.DatabaseReference
@@ -141,7 +140,7 @@ class Notice : AppCompatActivity() {
 
                                     // Clear image view only if a new image is selected
                                     if (::imageUri.isInitialized ) {
-                                        binding.imgview.setImageResource(R.drawable.gallary)
+//                                        binding.imgview.setImageResource(R.drawable.gallary)
                                         binding.imgview.tag = null
                                     }
 
@@ -173,7 +172,7 @@ class Notice : AppCompatActivity() {
 
                         // Clear image view only if a new image is selected
                         if (::imageUri.isInitialized ) {
-                            binding.imgview.setImageResource(R.drawable.gallary)
+//                            binding.imgview.setImageResource(R.drawable.gallary)
                             binding.imgview.tag = null
                         }
 

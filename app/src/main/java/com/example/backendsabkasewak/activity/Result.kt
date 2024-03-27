@@ -133,7 +133,7 @@ class Result : AppCompatActivity() {
                                     // Clear form fields after successful upload
                                     binding.tittle.text.clear()
                                     binding.link.text.clear()
-                                    binding.imgview.setImageResource(R.drawable.gallary)
+//                                    binding.imgview.setImageResource(R.drawable.gallary)
                                     binding.pdfchoose.tag = null
                                     progressDialog.dismiss()
                                 }
